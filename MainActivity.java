@@ -9,7 +9,7 @@ import android.content.Intent;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-
+/*ãƒ¡ã‚¤ãƒ³ãƒšãƒ¼ã‚¸*/
 public class MainActivity extends Activity implements OnClickListener {
 	private static final String pref_key = "setting";
 	static TextView textv_name,residue,stamina;
@@ -20,15 +20,15 @@ public class MainActivity extends Activity implements OnClickListener {
 	
 	SharedPreferences pref;
 	SharedPreferences.Editor editor;
-	
-	void inital(){
+	/*å„ã‚¿ã‚¤ãƒãƒ¼ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£*/
+	void initial(){
 		for(int i = 0;i < 10;i++){
-        	PreActivity.key_title[i] = "title" +Integer.toString(i);
-        	PreActivity.key_recovery[i] = "recovery" + Integer.toString(i);
-        	PreActivity.key_notice[i] = "notice" + Integer.toString(i);
+        	PreActivity.key_title[i] = "title" +Integer.toString(i);/*ã‚¿ã‚¤ãƒˆãƒ«*/
+        	PreActivity.key_recovery[i] = "recovery" + Integer.toString(i);/*å›å¾©*/
+        	PreActivity.key_notice[i] = "notice" + Integer.toString(i);/*é€šçŸ¥/*/
         }
 	}
-
+	/*ãƒœã‚¿ãƒ³ã‚„ãƒ†ã‚­ã‚¹ãƒˆãƒ“ãƒ¥ãƒ¼ã®é–¢é€£ä»˜ã‘*/
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -51,16 +51,16 @@ public class MainActivity extends Activity implements OnClickListener {
 		textv_name9 = (TextView)findViewById(R.id.textv_name9);
 		textv_name10 = (TextView)findViewById(R.id.textv_name10);
 		
-		textv_name.setText(pref.getString(PreActivity.key_title[0], "–¼Ì–¢İ’è"));
-		textv_name2.setText(pref.getString(PreActivity.key_title[1], "–¼Ì–¢İ’è"));
-		textv_name3.setText(pref.getString(PreActivity.key_title[2], "–¼Ì–¢İ’è"));
-		textv_name4.setText(pref.getString(PreActivity.key_title[3], "–¼Ì–¢İ’è"));
-		textv_name5.setText(pref.getString(PreActivity.key_title[4], "–¼Ì–¢İ’è"));
-		textv_name6.setText(pref.getString(PreActivity.key_title[5], "–¼Ì–¢İ’è"));
-		textv_name7.setText(pref.getString(PreActivity.key_title[6], "–¼Ì–¢İ’è"));
-		textv_name8.setText(pref.getString(PreActivity.key_title[7], "–¼Ì–¢İ’è"));
-		textv_name9.setText(pref.getString(PreActivity.key_title[8], "–¼Ì–¢İ’è"));
-		textv_name10.setText(pref.getString(PreActivity.key_title[9], "–¼Ì–¢İ’è"));
+		textv_name.setText(pref.getString(PreActivity.key_title[0], "åç§°æœªè¨­å®š"));
+		textv_name2.setText(pref.getString(PreActivity.key_title[1], "åç§°æœªè¨­å®š"));
+		textv_name3.setText(pref.getString(PreActivity.key_title[2], "åç§°æœªè¨­å®š"));
+		textv_name4.setText(pref.getString(PreActivity.key_title[3], "åç§°æœªè¨­å®š"));
+		textv_name5.setText(pref.getString(PreActivity.key_title[4], "åç§°æœªè¨­å®š"));
+		textv_name6.setText(pref.getString(PreActivity.key_title[5], "åç§°æœªè¨­å®š"));
+		textv_name7.setText(pref.getString(PreActivity.key_title[6], "åç§°æœªè¨­å®š"));
+		textv_name8.setText(pref.getString(PreActivity.key_title[7], "åç§°æœªè¨­å®š"));
+		textv_name9.setText(pref.getString(PreActivity.key_title[8], "åç§°æœªè¨­å®š"));
+		textv_name10.setText(pref.getString(PreActivity.key_title[9], "åç§°æœªè¨­å®š"));
 		
 		residue	= (TextView)findViewById(R.id.residue);
 		residue2 = (TextView)findViewById(R.id.residue2);
@@ -164,32 +164,29 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 	
 	/*
-	 //ƒƒ“ƒe“™‚·‚é‚È‚ç”z—ñ‚Å‘g‚İ‚È‚¨‚·B
+	 //ãƒ¡ãƒ³ãƒ†ç­‰ã™ã‚‹ãªã‚‰é…åˆ—ã§çµ„ã¿ãªãŠã™ã€‚
 	 public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         ScrollView scr_view = (ScrollView)findViewById(R.id.scr_view);
-        //”z—ñ‚Åì¬
+        //é…åˆ—ã§ä½œæˆ
         LinearLayout ll = new LinearLayout(this);
         one_line.setOrientation(one_line.VERTICAL);
         Button[] button_list = new Button[10];
         for(int i = 0; i < 10; i++){
         	
             button[i] = new Button(this);
-            button[i].setText("İ’è");
+            button[i].setText("è¨­å®š");
             button[i].setWidth(fill_parent);
             button[i].setHeight(wrap_content);
-            //ƒNƒŠƒbƒNƒŠƒXƒi[
+            //ã‚¯ãƒªãƒƒã‚¯ãƒªã‚¹ãƒŠãƒ¼
             button[i].setOnClickListener(this);
             ll.addView(button[i]);
  
         }
-        //ƒXƒNƒ[ƒ‹‚É’Ç‰Á
+        //ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã«è¿½åŠ 
         scr_view.addView(ll);
     }
 	 */
 
 }
-
-
-

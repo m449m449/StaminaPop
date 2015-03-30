@@ -23,34 +23,34 @@ import android.os.CountDownTimer;
 import android.widget.Toast;
 
 
-
+/*è¨­å®šãƒšãƒ¼ã‚¸*/
 public class PreActivity extends Activity implements OnClickListener{
-	private static final String pref_key = "setting";
-	static final String[] key_title = new String[10];
-	static final String[] key_recovery = new String[10];
-	static final String[] key_notice = new String[10];
-	static final int[] cdflg = new int[10];
-	static final int[] cdkey = new int[10];
-	static final int[] rkey = new int[10];
-	String title,recovery,notice;
-	String vtitle,vrecovery,vnotice;
-	String timer = "c‚èF0:00";
-	String totitle;
-	EditText edit_title,edit_recovery,edit_notice;
-	static TextView view_title,view_recovery,view_notice,vtimer;
-	CheckBox sound,vibrate,pop_up;
-	SharedPreferences pref;
-	SharedPreferences.Editor editor;
-	Button count_start,count_cancel;
-	long reco,noti,full;
-	int sflg,pflg;
-	
-	static int Ackey;
-	
-	
-	
+    private static final String pref_key = "setting";
+    static final String[] key_title = new String[10];
+    static final String[] key_recovery = new String[10];
+    static final String[] key_notice = new String[10];
+    static final int[] cdflg = new int[10];
+    static final int[] cdkey = new int[10];
+    static final int[] rkey = new int[10];
+    String title,recovery,notice;
+    String vtitle,vrecovery,vnotice;
+    String timer = "æ®‹ã‚Šï¼š0:00";
+    String totitle;
+    EditText edit_title,edit_recovery,edit_notice;
+    static TextView view_title,view_recovery,view_notice,vtimer;
+    CheckBox sound,vibrate,pop_up;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+    Button count_start,count_cancel;
+    long reco,noti,full;
+    int sflg,pflg;
+    
+    static int Ackey;
+    
+    
+    /*ãƒœã‚¿ãƒ³ã‚„ãƒ†ã‚­ã‚¹ãƒˆãƒ“ãƒ¥ãƒ¼ã®é–¢é€£ä»˜ã‘*/
     @Override
-	public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);
         
@@ -64,7 +64,7 @@ public class PreActivity extends Activity implements OnClickListener{
         count_start = (Button)findViewById(R.id.count_start);
         count_start.setOnClickListener(this);
         if(cdflg[Ackey] == 1){
-        	count_start.setText("  ƒJƒEƒ“ƒg’†  ");
+            count_start.setText("  ã‚«ã‚¦ãƒ³ãƒˆä¸­  ");
         }
         
         count_cancel = (Button)findViewById(R.id.count_cancel);
@@ -85,128 +85,128 @@ public class PreActivity extends Activity implements OnClickListener{
         
         
         
-        view_title.setText(pref.getString(key_title[Ackey], "–¼Ì–¢İ’è"));
-        view_recovery.setText(pref.getString(key_recovery[Ackey], "–¢“ü—Í"));
-        view_notice.setText(pref.getString(key_notice[Ackey], "–¢“ü—Í"));
+        view_title.setText(pref.getString(key_title[Ackey], "åç§°æœªè¨­å®š"));
+        view_recovery.setText(pref.getString(key_recovery[Ackey], "æœªå…¥åŠ›"));
+        view_notice.setText(pref.getString(key_notice[Ackey], "æœªå…¥åŠ›"));
         vtitle = view_title.getText().toString();
         vrecovery = view_recovery.getText().toString();
         vnotice = view_notice.getText().toString();
         
     }
-    	
+        
         public void onClick(View v){
-        	if(v.getId()==R.id.sound){
-        		if(sound.isChecked() == true){
-        			sflg += 10;
-        		}else{
-        			sflg -= 10;
-        		}
-        	}else if(v.getId() == R.id.vibrate){
-        		if(vibrate.isChecked() == true){
-        			sflg++;
-        		}else{
-        			sflg--;
-        		}
-        			
-        	}else if(v.getId() == R.id.pop_up){
-        		if(pflg == 0){
-        			pflg = 1;
-        		}else{
-        			pflg = 0;
-        		}
-        	}else{
-        		//ƒGƒfƒBƒ^[‚ÌXV
-        		title = edit_title.getText().toString();
-        		recovery = edit_recovery.getText().toString();
-        		notice = edit_notice.getText().toString();
-        		//–¼Ì‚ªV‹K“ü—Í‚³‚ê‚½‚©‚Ç‚¤‚©
-        		if(title.equals("")){
-        			totitle = vtitle;
-        		}else{
-        			totitle = title;
-        			editor = pref.edit();
-        			editor.putString(key_title[Ackey], title);
-        			editor.commit();
-        		}
-        		if(recovery.equals("")){
-        			if(vrecovery.equals("–¢“ü—Í")){
-        				reco = 0;
-        			}else{
-        				reco = Long.parseLong(vrecovery);
-        			}
-        			
-        		}else{
-        			reco = Long.parseLong(recovery);
-        			editor = pref.edit();
-        			editor.putString(key_recovery[Ackey], recovery);
-        			editor.commit();
-        		}
-        		if(notice.equals("")){
-        			if(vnotice.equals("–¢“ü—Í")){
-        				noti = 0;
-        			}else{
-        				noti = Long.parseLong(vnotice);
-        			}
-        		}else{
-        			noti = Long.parseLong(notice);
-        			editor = pref.edit();
-        			editor.putString(key_notice[Ackey], notice);
-        			editor.commit();
-        		}
-        		
-        		full = reco * noti * 1000;
-        	//ƒJƒEƒ“ƒg’†‚ÉV‚µ‚¢ƒIƒuƒWƒFƒNƒg‚ğì‚ç‚È‚¢‚æ‚¤‚Éƒtƒ‰ƒO‚ÅŠÇ—
-        	if(cdflg[Ackey] == 0){	
-        		MyCountDownTimer cdt = new MyCountDownTimer(full,1000);	
-        		if(v.getId()==R.id.count_start){	
-        			cdflg[Ackey] = 1;
-        			cdt.start();
-        			count_start.setText("  ƒJƒEƒ“ƒg’†  ");
-        			setview(Ackey);
-        		}else if(v.getId()==R.id.count_cancel){
-        		}
-        	}else if(v.getId()==R.id.count_cancel){
-        		vtimer.setText("c‚è:00:00:00");
-        		count_start.setText("ƒJƒEƒ“ƒgŠJn");
-        		MainActivity ma = new MainActivity();
-        		ma.timerset("c‚è:00:00:00",Ackey);
-        		cdflg[Ackey]  = 0;
-    			cdkey[Ackey]++;
-    		}
-        	
-        		
-        		
-        	}
-    			
-		}
+            if(v.getId()==R.id.sound){
+                if(sound.isChecked() == true){
+                    sflg += 10;
+                }else{
+                    sflg -= 10;
+                }
+            }else if(v.getId() == R.id.vibrate){
+                if(vibrate.isChecked() == true){
+                    sflg++;
+                }else{
+                    sflg--;
+                }
+                    
+            }else if(v.getId() == R.id.pop_up){
+                if(pflg == 0){
+                    pflg = 1;
+                }else{
+                    pflg = 0;
+                }
+            }else{
+                //ã‚¨ãƒ‡ã‚£ã‚¿ãƒ¼ã®æ›´æ–°
+                title = edit_title.getText().toString();
+                recovery = edit_recovery.getText().toString();
+                notice = edit_notice.getText().toString();
+                //åç§°ãŒæ–°è¦å…¥åŠ›ã•ã‚ŒãŸã‹ã©ã†ã‹
+                if(title.equals("")){
+                    totitle = vtitle;
+                }else{
+                    totitle = title;
+                    editor = pref.edit();
+                    editor.putString(key_title[Ackey], title);
+                    editor.commit();
+                }
+                if(recovery.equals("")){
+                    if(vrecovery.equals("æœªå…¥åŠ›")){
+                        reco = 0;
+                    }else{
+                        reco = Long.parseLong(vrecovery);
+                    }
+                    
+                }else{
+                    reco = Long.parseLong(recovery);
+                    editor = pref.edit();
+                    editor.putString(key_recovery[Ackey], recovery);
+                    editor.commit();
+                }
+                if(notice.equals("")){
+                    if(vnotice.equals("æœªå…¥åŠ›")){
+                        noti = 0;
+                    }else{
+                        noti = Long.parseLong(vnotice);
+                    }
+                }else{
+                    noti = Long.parseLong(notice);
+                    editor = pref.edit();
+                    editor.putString(key_notice[Ackey], notice);
+                    editor.commit();
+                }
+                
+                full = reco * noti * 1000;
+            //ã‚«ã‚¦ãƒ³ãƒˆä¸­ã«æ–°ã—ã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œã‚‰ãªã„ã‚ˆã†ã«ãƒ•ãƒ©ã‚°ã§ç®¡ç†
+            if(cdflg[Ackey] == 0){  
+                MyCountDownTimer cdt = new MyCountDownTimer(full,1000); 
+                if(v.getId()==R.id.count_start){    
+                    cdflg[Ackey] = 1;
+                    cdt.start();
+                    count_start.setText("  ã‚«ã‚¦ãƒ³ãƒˆä¸­  ");
+                    setview(Ackey);
+                }else if(v.getId()==R.id.count_cancel){
+                }
+            }else if(v.getId()==R.id.count_cancel){
+                vtimer.setText("æ®‹ã‚Š:00:00:00");
+                count_start.setText("ã‚«ã‚¦ãƒ³ãƒˆé–‹å§‹");
+                MainActivity ma = new MainActivity();
+                ma.timerset("æ®‹ã‚Š:00:00:00",Ackey);
+                cdflg[Ackey]  = 0;
+                cdkey[Ackey]++;
+            }
+            
+                
+                
+            }
+                
+        }
         
         void setview(int flg){
-        	switch(flg){
-        	case 0: MainActivity.textv_name.setText(totitle);break;
-        	case 1: MainActivity.textv_name2.setText(totitle);break;
-        	case 2: MainActivity.textv_name3.setText(totitle);break;
-        	case 3: MainActivity.textv_name4.setText(totitle);break;
-        	case 4: MainActivity.textv_name5.setText(totitle);break;
-        	case 5: MainActivity.textv_name6.setText(totitle);break;
-        	case 6: MainActivity.textv_name7.setText(totitle);break;
-        	case 7: MainActivity.textv_name8.setText(totitle);break;
-        	case 8: MainActivity.textv_name9.setText(totitle);break;
-        	case 9: MainActivity.textv_name10.setText(totitle);break;
-        	default: break;
-        	
-        	}
+            switch(flg){
+            case 0: MainActivity.textv_name.setText(totitle);break;
+            case 1: MainActivity.textv_name2.setText(totitle);break;
+            case 2: MainActivity.textv_name3.setText(totitle);break;
+            case 3: MainActivity.textv_name4.setText(totitle);break;
+            case 4: MainActivity.textv_name5.setText(totitle);break;
+            case 5: MainActivity.textv_name6.setText(totitle);break;
+            case 6: MainActivity.textv_name7.setText(totitle);break;
+            case 7: MainActivity.textv_name8.setText(totitle);break;
+            case 8: MainActivity.textv_name9.setText(totitle);break;
+            case 9: MainActivity.textv_name10.setText(totitle);break;
+            default: break;
+            
+            }
         }
         
         
         
         
         public class MyCountDownTimer extends CountDownTimer{
-        	//ƒ^ƒCƒ}[”Ô†
-       	 	int flg = Ackey;
-        	//“¯‚¶ƒ^ƒCƒ}[”Ô†‚Å‚ÌƒIƒuƒWƒFƒNƒg‚Ì¯•Ê”Ô†
-       	 	int key = cdkey[Ackey];
-       	 	
-       	 	
+            //ã‚¿ã‚¤ãƒãƒ¼ç•ªå·
+            int flg = Ackey;
+            //åŒã˜ã‚¿ã‚¤ãƒãƒ¼ç•ªå·ã§ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è­˜åˆ¥ç•ªå·
+            int key = cdkey[Ackey];
+            
+            
             public MyCountDownTimer(long millisInFuture, long countDownInterval) {
                 super(millisInFuture, countDownInterval);
           
@@ -215,113 +215,113 @@ public class PreActivity extends Activity implements OnClickListener{
             MainActivity ma = new MainActivity();
             @Override
             public void onFinish() {
-            	
-                // ƒJƒEƒ“ƒgƒ_ƒEƒ“Š®—¹Œã‚ÉŒÄ‚Î‚ê‚é
-            	//ÅV‚ÌƒIƒuƒWƒFƒNƒg‚©”»’è
-            	if(key == cdkey[flg]){
-            		//ÅV‚È‚çƒJƒEƒ“ƒgŠJnƒ{ƒ^ƒ“‚ª‰Ÿ‚¹‚é‚æ‚¤‚É‚È‚é
-            		cdflg[flg] = 0;
-            		timer = "c‚è:00:00:00";
-            		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE); 
-            		PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "StaminaPop");
-            		wl.acquire();
-            		if(pflg == 1){
-            			Toast.makeText(getApplicationContext(),totitle +  "‚ÌƒXƒ^ƒ~ƒi‚ª‰ñ•œ‚µ‚Ü‚µ‚½", Toast.LENGTH_LONG).show();
-            		}
+                
+                // ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³å®Œäº†å¾Œã«å‘¼ã°ã‚Œã‚‹
+                //æœ€æ–°ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹åˆ¤å®š
+                if(key == cdkey[flg]){
+                    //æœ€æ–°ãªã‚‰ã‚«ã‚¦ãƒ³ãƒˆé–‹å§‹ãƒœã‚¿ãƒ³ãŒæŠ¼ã›ã‚‹ã‚ˆã†ã«ãªã‚‹
+                    cdflg[flg] = 0;
+                    timer = "æ®‹ã‚Š:00:00:00";
+                    PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE); 
+                    PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "StaminaPop");
+                    wl.acquire();
+                    if(pflg == 1){
+                        Toast.makeText(getApplicationContext(),totitle +  "ã®ã‚¹ã‚¿ãƒŸãƒŠãŒå›å¾©ã—ã¾ã—ãŸ", Toast.LENGTH_LONG).show();
+                    }
                     sendNotification();               
                     ma.timerset(timer,flg);
                     instantimer(timer,flg);
-                    count_start.setText("ƒJƒEƒ“ƒgŠJn");
+                    count_start.setText("ã‚«ã‚¦ãƒ³ãƒˆé–‹å§‹");
                     wl.release();
-            	}else{
-            		//ŒÃ‚¢ƒIƒuƒWƒFƒNƒg‚È‚çÅV‚Ì¯•Ê”Ô†‚ğ‰º‚°‚é
-            		cdkey[flg]--;
-            		rkey[flg] = 1;
-            	}
+                }else{
+                    //å¤ã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãªã‚‰æœ€æ–°ã®è­˜åˆ¥ç•ªå·ã‚’ä¸‹ã’ã‚‹
+                    cdkey[flg]--;
+                    rkey[flg] = 1;
+                }
                 
             }
           
             @Override
             public void onTick(long millisUntilFinished) {
-                // ƒCƒ“ƒ^[ƒoƒ‹(countDownInterval)–ˆ‚ÉŒÄ‚Î‚ê‚é
-            	//ŒÃ‚¢ƒIƒuƒWƒFƒNƒgiƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½ƒ^ƒCƒ}[j‚ªI‚í‚Á‚½‚ç¯•Ê”Ô†‚ğˆê‚Â‰º‚°‚é
-            	if(rkey[flg] == 1){
-            		if(key == cdkey[flg] + 1){
-            			key--;
-            			rkey[flg] = 0;
-            		}
-            	}
-            	String h,m,s;
-            	h = Long.toString(millisUntilFinished/1000/3600);
-            	m = Long.toString(millisUntilFinished/1000%3600/60);
-            	s = Long.toString(millisUntilFinished/1000%60);
-            	if(millisUntilFinished/1000/3600 < 10){
-            		h = "0" + Long.toString(millisUntilFinished/1000/3600);
-            	}
-            	if(millisUntilFinished/1000%3600/60 < 10){
-            		m = "0" + Long.toString(millisUntilFinished/1000%3600/60);
-            	}
-            	if(millisUntilFinished/1000%60 < 10){
-            		s = "0" + Long.toString(millisUntilFinished/1000%60);
-            	}
-            	if(key == cdkey[flg]){
-                timer = "c‚è:" + h + ":" + m + ":" + s;
+                // ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«(countDownInterval)æ¯ã«å‘¼ã°ã‚Œã‚‹
+                //å¤ã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼ˆã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸã‚¿ã‚¤ãƒãƒ¼ï¼‰ãŒçµ‚ã‚ã£ãŸã‚‰è­˜åˆ¥ç•ªå·ã‚’ä¸€ã¤ä¸‹ã’ã‚‹
+                if(rkey[flg] == 1){
+                    if(key == cdkey[flg] + 1){
+                        key--;
+                        rkey[flg] = 0;
+                    }
+                }
+                String h,m,s;
+                h = Long.toString(millisUntilFinished/1000/3600);
+                m = Long.toString(millisUntilFinished/1000%3600/60);
+                s = Long.toString(millisUntilFinished/1000%60);
+                if(millisUntilFinished/1000/3600 < 10){
+                    h = "0" + Long.toString(millisUntilFinished/1000/3600);
+                }
+                if(millisUntilFinished/1000%3600/60 < 10){
+                    m = "0" + Long.toString(millisUntilFinished/1000%3600/60);
+                }
+                if(millisUntilFinished/1000%60 < 10){
+                    s = "0" + Long.toString(millisUntilFinished/1000%60);
+                }
+                if(key == cdkey[flg]){
+                timer = "æ®‹ã‚Š:" + h + ":" + m + ":" + s;
                 ma.timerset(timer,flg);
                 instantimer(timer,flg);
-            	}
+                }
                 
             }
         }
         
         void instantimer(String time,int flg){
-        	if(flg == Ackey){
-        		vtimer.setText(time);
-        	}
+            if(flg == Ackey){
+                vtimer.setText(time);
+            }
         }
         
         private void sendNotification() {
-            // Intent ‚Ìì¬
+            // Intent ã®ä½œæˆ
             Intent intent = new Intent(PreActivity.this, MainActivity.class);
             PendingIntent contentIntent = PendingIntent.getActivity(
                     PreActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
              
-            // LargeIcon ‚Ì Bitmap ‚ğ¶¬
+            // LargeIcon ã® Bitmap ã‚’ç”Ÿæˆ
             Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
              
-            // NotificationBuilder‚ğì¬
+            // NotificationBuilderã‚’ä½œæˆ
             NotificationCompat.Builder builder = new NotificationCompat.Builder(
                     getApplicationContext());
             builder.setContentIntent(contentIntent);
-            // ƒXƒe[ƒ^ƒXƒo[‚É•\¦‚³‚ê‚éƒeƒLƒXƒg
-            builder.setTicker(totitle + "‚ÌƒXƒ^ƒ~ƒi‚ª‰ñ•œ‚µ‚Ü‚µ‚½");
-            // ƒAƒCƒRƒ“
+            // ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã«è¡¨ç¤ºã•ã‚Œã‚‹ãƒ†ã‚­ã‚¹ãƒˆ
+            builder.setTicker(totitle + "ã®ã‚¹ã‚¿ãƒŸãƒŠãŒå›å¾©ã—ã¾ã—ãŸ");
+            // ã‚¢ã‚¤ã‚³ãƒ³
             builder.setSmallIcon(R.drawable.ic_launcher);
-            // Notification‚ğŠJ‚¢‚½‚Æ‚«‚É•\¦‚³‚ê‚éƒ^ƒCƒgƒ‹
+            // Notificationã‚’é–‹ã„ãŸã¨ãã«è¡¨ç¤ºã•ã‚Œã‚‹ã‚¿ã‚¤ãƒˆãƒ«
             builder.setContentTitle("StaminaPop");
-            // Notification‚ğŠJ‚¢‚½‚Æ‚«‚É•\¦‚³‚ê‚éƒTƒuƒ^ƒCƒgƒ‹
-            builder.setContentText(totitle + "‚ÌƒXƒ^ƒ~ƒi‚ª‰ñ•œ‚µ‚Ü‚µ‚½");
-            // Notification‚ğŠJ‚¢‚½‚Æ‚«‚É•\¦‚³‚ê‚éƒAƒCƒRƒ“
+            // Notificationã‚’é–‹ã„ãŸã¨ãã«è¡¨ç¤ºã•ã‚Œã‚‹ã‚µãƒ–ã‚¿ã‚¤ãƒˆãƒ«
+            builder.setContentText(totitle + "ã®ã‚¹ã‚¿ãƒŸãƒŠãŒå›å¾©ã—ã¾ã—ãŸ");
+            // Notificationã‚’é–‹ã„ãŸã¨ãã«è¡¨ç¤ºã•ã‚Œã‚‹ã‚¢ã‚¤ã‚³ãƒ³
             builder.setLargeIcon(largeIcon);
-            //ƒ‰ƒCƒg
+            //ãƒ©ã‚¤ãƒˆ
             builder.setLights(0xFF00FF7F, 500, 500);
-            // ’Ê’m‚·‚éƒ^ƒCƒ~ƒ“ƒO
+            // é€šçŸ¥ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
             builder.setWhen(System.currentTimeMillis());
-            // ’Ê’m‚Ì‰¹EƒoƒCƒuEƒ‰ƒCƒg
+            // é€šçŸ¥æ™‚ã®éŸ³ãƒ»ãƒã‚¤ãƒ–ãƒ»ãƒ©ã‚¤ãƒˆ
             System.out.println(sflg);
             if(sflg == 11){
-            	builder.setDefaults(Notification.DEFAULT_SOUND
-            			|Notification.DEFAULT_VIBRATE);
+                builder.setDefaults(Notification.DEFAULT_SOUND
+                        |Notification.DEFAULT_VIBRATE);
             }else if(sflg == 10){
-            	builder.setDefaults(Notification.DEFAULT_SOUND);
+                builder.setDefaults(Notification.DEFAULT_SOUND);
             }else if(sflg == 1){
-            	builder.setDefaults(Notification.DEFAULT_VIBRATE);
+                builder.setDefaults(Notification.DEFAULT_VIBRATE);
             }
             // Notification.DEFAULT_LIGHTS
-            // ƒ^ƒbƒv‚·‚é‚ÆƒLƒƒƒ“ƒZƒ‹(Á‚¦‚é)
+            // ã‚¿ãƒƒãƒ—ã™ã‚‹ã¨ã‚­ãƒ£ãƒ³ã‚»ãƒ«(æ¶ˆãˆã‚‹)
             builder.setAutoCancel(true); 
-            // NotificationManager‚ğæ“¾
+            // NotificationManagerã‚’å–å¾—
             NotificationManager manager = (NotificationManager) getSystemService(Service.NOTIFICATION_SERVICE);
-            // Notification‚ğì¬‚µ‚Ä’Ê’m
+            // Notificationã‚’ä½œæˆã—ã¦é€šçŸ¥
             manager.notify(1, builder.build());
         }
 }
