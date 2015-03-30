@@ -10,6 +10,6 @@ StaminaPop
 ・スタミナが設定した量分回復すると通知をする設定にします。<br>
 ・カウント開始：ボタンを押した瞬間からカウントを開始します。<br>
 ・ポップアップ、サウンド、バイブのOn/Offを設定できます。<br>
-![image](./img/scshot1.png) ![image](./img/scshot2.png)
+![image](./img/scshot1.png) ![image](./img/scshot2.png)<br>
 GooglePlayストア<br>
 https://play.google.com/store/apps/details?id=jp.ac.teu.st.m0112449.staminapop
